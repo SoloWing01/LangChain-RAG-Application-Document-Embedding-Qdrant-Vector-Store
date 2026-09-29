@@ -1,4 +1,10 @@
-export const API_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/$/, "");
+const DEFAULT_BACKEND_URL = "https://langchain-rag-application-document.onrender.com";
+const LOCAL_BACKEND_URL = "http://localhost:8000";
+
+export const API_URL = (
+  process.env.NEXT_PUBLIC_API_URL || DEFAULT_BACKEND_URL || LOCAL_BACKEND_URL
+).replace(/\/$/, "");
+
 export type ChatResult = { answer: string; sources: Array<{ source?: string; content?: string; page?: number }> };
 type ApiError = Error & { status?: number };
 export async function apiRequest<T>(path: string, init: RequestInit): Promise<T> {
