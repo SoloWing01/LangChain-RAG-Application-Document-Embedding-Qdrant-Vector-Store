@@ -2,7 +2,7 @@ const DEFAULT_BACKEND_URL = "https://langchain-rag-application-document.onrender
 const LOCAL_BACKEND_URL = "http://localhost:8000";
 
 export const API_URL = (
-  process.env.NEXT_PUBLIC_API_URL || DEFAULT_BACKEND_URL || LOCAL_BACKEND_URL
+  process.env.NEXT_PUBLIC_API_URL ?? DEFAULT_BACKEND_URL ?? LOCAL_BACKEND_URL
 ).replace(/\/$/, "");
 
 export type ChatResult = { answer: string; sources: Array<{ source?: string; content?: string; page?: number }> };
