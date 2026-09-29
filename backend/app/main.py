@@ -1,6 +1,7 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.db.mongodb import connect_mongodb, close_mongodb
 from app.rag.memory import create_memory_index
@@ -27,6 +28,19 @@ app = FastAPI(
     description="Document-based Retrieval Augmented Generation API",
     version="1.0.0",
     lifespan=lifespan
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://lang-chain-rag-application-document-embed-git-35c2fc-solowing01.vercel.app",
+    ],
+    allow_origin_regex=r"https://.*\.vercel\.app$",
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.get("/")
