@@ -1,7 +1,10 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+
 class Settings(BaseSettings):
+
     HUGGINGFACE_API_KEY: str
+
     HUGGINGFACE_EMBEDDING_MODEL: str = (
         "sentence-transformers/all-MiniLM-L6-v2"
     )
@@ -11,6 +14,8 @@ class Settings(BaseSettings):
 
     QDRANT_URL: str
     QDRANT_API_KEY: str
+
+    MONGODB_URI: str
 
     model_config = SettingsConfigDict(
         env_file=".env",
